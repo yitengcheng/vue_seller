@@ -11,8 +11,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "stylus": "^0.54.5",
     "vue": "^2.5.2",
+    "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
@@ -30,6 +30,7 @@
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
     "stylus-loader": "2.1.1",
+    "stylus": "^0.54.5",
     "eslint": "^4.15.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-friendly-formatter": "^3.0.0",
