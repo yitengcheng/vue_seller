@@ -49,7 +49,6 @@ export default {
   height: 40px
   line-height: 40px
   border-1px(rgba(7, 17, 27, 0.1))
-  border-top-1px(rgba(7, 17, 27, 0.1))
   .tab-item
     flex: 1
     text-align: center
