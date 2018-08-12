@@ -2,7 +2,7 @@
   <span v-if="icon >= 0" class="icon" :class="classMap[icon] + '_' + iconType" :style="iconStyle"></span>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 export default {
   props: {
     icon: {
@@ -25,13 +25,13 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus">
   @import "../../common/stylus/mixin"
   .icon
-    display : inline-block
-    vertical-align : top
-    height : 12px
-    width : 12px
-    background-size : 12px 12px
-    background-repeat : no-repeat
-    margin-right : 4px
+    display: inline-block
+    vertical-align: top
+    height: 12px
+    width: 12px
+    background-size: 12px 12px
+    background-repeat: no-repeat
+    margin-right: 4px
     &.decrease_1
       bg-image('./img/decrease_1')
     &.discount_1
