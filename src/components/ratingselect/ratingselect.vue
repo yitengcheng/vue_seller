@@ -62,14 +62,14 @@ export default {
         return;
       }
       this.selectType = type;
-      this.$dispatch('ratingtype.select', type); // 派发事件通知父组件值的改变
+      this.$emit('select', type); // 派发事件通知父组件值的改变
     },
     toggleContent (event) {
       if (!event._constructed) {
         return;
       }
       this.onlyContent = !this.onlyContent;
-      this.$dispath('content.toggle', this.onlyContent);
+      this.$emit('toggle');
     }
   }
 };
