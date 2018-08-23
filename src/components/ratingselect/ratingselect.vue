@@ -61,14 +61,12 @@ export default {
       if (!event._constructed) {
         return;
       }
-      this.selectType = type;
       this.$emit('select', type); // 派发事件通知父组件值的改变
     },
     toggleContent (event) {
       if (!event._constructed) {
         return;
       }
-      this.onlyContent = !this.onlyContent;
       this.$emit('toggle');
     }
   }
