@@ -1,5 +1,5 @@
 <template>
-  <div class="seller">
+  <div class="seller" ref="seller">
     <div class="seller-content">
       <div class="overview">
         <h1 class="title">{{seller.name}}</h1>
@@ -29,24 +29,62 @@
           </li>
         </ul>
       </div>
+      <split></split>
+      <div class="bulletin">
+        <h1 class="title">公告与活动</h1>
+        <div class="content-wrapper border-1px">
+          <p class="content">{{seller.bulletin}}</p>
+        </div>
+        <ul v-if="seller.supports" class="supports">
+          <li class="support-item border-1px" v-for="(support, index) in seller.supports" :key="index">
+            <icon :icon="seller.supports[index].type" :iconType="4" :iconStyle="{ width: 16 +'px', height: 16+'px', backgroundSize: 16+'px'}" />
+            <span class="text">{{support.description}}</span>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import BScroll from 'better-scroll';
 import star from 'components/star/star';
+import split from 'components/split/split';
+import icon from 'components/icon/icon';
+
 export default {
-  components: { star },
+  components: { star, split, icon },
   props: {
     seller: {
       type: Object
+    }
+  },
+  mounted () {
+    this._initScroll();
+  },
+  watch: {
+    'seller' () {
+      this.$nextTick(() => {
+        this._initScroll();
+      });
+    }
+  },
+  methods: {
+    _initScroll () {
+      if (!this.scroll) {
+        this.scroll = new BScroll(this.$refs.seller, {
+          click: true
+        });
+      } else {
+        this.scroll.refresh();
+      }
     }
   }
 };
 
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus">
 @import '../../common/stylus/mixin'
 
 .seller
@@ -65,19 +103,19 @@ export default {
       font-size 14px
     .desc
       padding-bottom 18px
-      line-height 18px
       font-size 0
       border-1px(rgba(7, 17, 27, 0.1))
       .star
         display inline-block
         vertical-align top
         margin-right 8px
-        .text
-          display inline-block
-          vertical-align top
-          margin-right 12px
-          font-size 10px
-          color rgb(77, 85, 93)
+      .text
+        display inline-block
+        line-height 18px
+        vertical-align top
+        margin-right 12px
+        font-size 10px
+        color rgb(77, 85, 93)
     .remark
       display flex
       padding-top 18px
@@ -98,4 +136,29 @@ export default {
           color rgb(7, 17, 27)
           .stress
             font-size 24px
+  .bulletin
+    padding 18px 18px 0 18px
+    .title
+      margin-bottom 8px
+      line-height 14px
+      color rgb(7, 17, 27)
+      font-size 14px
+    .content-wrapper
+      padding 0 12px 16px 12px
+      border-1px(rgba(7, 17, 27, 0.1))
+      .content
+        line-height 24px
+        font-size 12px
+        color rgb(240, 20, 20)
+    .supports
+      .support-item
+        padding 16px 12px
+        font-size 0
+        border-1px(rgba(7, 17, 27, 0.1))
+        &:last-child
+          border-none()
+        .text
+          line-height 16px
+          font-size 12px
+          color rgb(7, 17, 27)
 </style>
